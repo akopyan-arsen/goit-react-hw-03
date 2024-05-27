@@ -2,7 +2,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
 import { nanoid } from "nanoid";
-
+import css from "./ContactForm.module.css";
 import { useId } from "react";
 
 const ContactForm = ({ onAdd }) => {
@@ -31,16 +31,38 @@ const ContactForm = ({ onAdd }) => {
       onSubmit={handleSubmit}
       validationSchema={contactSchema}
     >
-      <Form>
-        <label htmlFor={nameFieldId}>Name</label>
-        <Field type="text" name="name" id={nameFieldId} />
-        <ErrorMessage name="name" component="span" />
-
-        <label htmlFor={phoneFieldId}>Number</label>
-        <Field type="tel" name="number" id={phoneFieldId} />
-        <ErrorMessage name="number" component="span" />
-
-        <button type="submit">Add contact</button>
+      <Form className={css.form}>
+        <div className={css.inputWrapper}>
+          <label htmlFor={nameFieldId}>Name</label>
+          <Field
+            type="text"
+            name="name"
+            id={nameFieldId}
+            className={css.input}
+          />
+          <ErrorMessage
+            className={css.ErrorMessage}
+            name="name"
+            component="span"
+          />
+        </div>
+        <div className={css.inputWrapper}>
+          <label htmlFor={phoneFieldId}>Number</label>
+          <Field
+            type="tel"
+            name="number"
+            id={phoneFieldId}
+            className={css.input}
+          />
+          <ErrorMessage
+            className={css.ErrorMessage}
+            name="number"
+            component="span"
+          />
+        </div>
+        <button type="submit" className={css.button}>
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
